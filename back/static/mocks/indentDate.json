@@ -1,0 +1,60 @@
+{
+	"items": [{
+		"outTradeNo": 123456,
+		"totalAmount": 215,
+		"billDate": "2017.9.28",
+		"user": "马cc",
+		"subject": "充值10猫币"
+	},
+	{
+		"outTradeNo": 123456,
+		"totalAmount": 215,
+		"billDate": "2017.9.28",
+		"user": "马cc",
+		"subject": "充值10猫币"
+	},
+	{
+		"outTradeNo": 123456,
+		"totalAmount": 215,
+		"billDate": "2017.9.28",
+		"user": "马cc",
+		"subject": "充值10猫币"
+	},
+	{
+		"outTradeNo": 123456,
+		"totalAmount": 215,
+		"billDate": "2017.9.28",
+		"user": "马cc",
+		"subject": "充值10猫币"
+	}
+],
+	"Vitems": [{
+		"outTradeNo": 123456,
+		"money": 215,
+		"billDate": "2017.9.28",
+		"user": "马cc",
+		"subject": "充值10猫币"
+	},
+	{
+		"outTradeNo": 123456,
+		"money": 215,
+		"billDate": "2017.9.28",
+		"user": "马cc",
+		"subject": "充值10猫币"
+	},
+	{
+		"outTradeNo": 123456,
+		"money": 215,
+		"billDate": "2017.9.28",
+		"user": "马cc",
+		"subject": "充值10猫币"
+	},
+	{
+		"outTradeNo": 123456,
+		"money": 215,
+		"billDate": "2017.9.28",
+		"user": "马cc",
+		"subject": "充值10猫币"
+	}
+]
+}

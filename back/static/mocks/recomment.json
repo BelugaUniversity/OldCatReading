@@ -1,0 +1,29 @@
+{
+         "bookList": [
+         	{
+                "bookName": "\u597d\u5b55\u9c9c\u59bb\uff0c\u4e00\u80ce\u751f\u4e24\u5b9d",
+                "id": 7,
+                "coverImg": "./2706179_185025082_2.jpg",
+                "author": "\u5f20\u5c0f\u8a00",
+                "type": "\u793e\u4f1a",
+                "positions": [1, 2, 3, 4, 5, 6, 7, 8] 
+	        },
+	        {
+                "bookName": "\u597d\u5b55\u9c9c\u59bb\uff0c\u4e00\u80ce\u751f\u4e24\u5b9d",
+                "id": 7,
+                "coverImg": "./2706179_185025082_2.jpg",
+                "author": "\u5f20\u5c0f\u8a00",
+                "type": "\u793e\u4f1a",
+                "positions": [1, 2, 5, 4, 5, 6, 7, 4] 
+	        },
+	        {
+                "bookName": "\u597d\u5b55\u9c9c\u59bb\uff0c\u4e00\u80ce\u751f\u4e24\u5b9d",
+                "id": 7,
+                "coverImg": "./2706179_185025082_2.jpg",
+                "author": "\u5f20\u5c0f\u8a00",
+                "type": "\u793e\u4f1a",
+                "positions": [0, 2, 3, 4, 7, 6, 7, 8] 
+	        }
+	    ],
+        "pageNumber": 1
+}
