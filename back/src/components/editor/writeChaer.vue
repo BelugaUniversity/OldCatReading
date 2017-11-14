@@ -21,7 +21,7 @@
           <button class="btn btn-default" @click="chapterDelete()" style="margin-left: 30px;" :disabled='delIsDisabled'>删除</button>
           <button class="btn  btn-default" @click="WordCountAPIView()">字数统计</button>
           <button class="btn  btn-default" @click="newChapter()">新建章节</button>
-          <button class="btn  btn-default" @click="newChapter()">批量上传</button>
+          <input type="file" id="input" @change="uploadAll($event)">
           <button class="btn btn-default" @click="saveChapter()">保存</button>
           <!-- <button class="btn btn-success" @click="releaseChapter()">发布</button> -->
         </div>                       
@@ -89,8 +89,8 @@
 			  chaptersId: 1,               // 当前显示章节ID
 			  chapterName: "",             // 当前显示章节名
 			  chapterContent: "",          // 当前显示章节内容
-			  chaptersType: "",
-			  chaptersState: "",
+			  chaptersType: '',
+			  chaptersState: '',
 			  items:[{
 		      chaptersId:"",
 		      chaptersName: "",
@@ -144,6 +144,55 @@
       })
     },
     methods:{
+      initLoading: function(){
+        //初始化
+        var _this = this
+        $.get("http://www.3roo.cn/EditChapterListAPIView/", {
+            bookId: _this.bookId
+        }, function(data) {
+            data = $.parseJSON(data);
+
+            _this.cities = data.chaptersList
+            _this.bookName = data.name;
+            _this.chaptersNumber = data.chaptersNumber;
+            _this.chaptersId = _this.chaptersNumber + 1;
+            _this.items = data.chaptersList;
+        })
+      },
+      uploadAll: function(e){
+        //读取txt内容
+        var _this = this
+        var file = e.target.files[0]
+        var reader = new FileReader();
+        reader.readAsText(file, "gb2312"); 
+        reader.onload = function(file){
+          _this.handleTxt(file.target.result)
+        };
+      },
+      handleTxt: function(info){
+        //处理txt内容
+        var re = new RegExp("第\S章")
+        var infoArray = info.split(/第\S*章+/)
+        var titleArray = []
+        var contentArray = []
+        var title
+        var content
+        for(var i = 1; i < infoArray.length; i++)
+        {
+          title = infoArray[i].split('\n')[0]
+          content = infoArray[i].split(title)[1]
+          this.newChapter()
+          this.chapterName = title
+          this.chapterContent = content
+          this.saveChapter()
+        }
+/*        for(var i = 0; i < titleArray.length; i++){
+          this.newChapter()
+          this.chapterName = titleArray[i]
+          this.chapterContent = contentArray[i]
+          this.saveChapter()
+        }*/
+      },
       chapListSure: function(){
         this.clickprice = false
         this.chapterID = []
@@ -249,17 +298,17 @@
         {
           $.ajax({
             beforeSend: csrfTokenHeader,
-            url: "http://www.3roo.cn/EditBookInfoAPIView",
+            url: "http://www.3roo.cn/CreateChapterAPIView/",
             async: false,
             data: {
                 bookId: _this.bookId,
-                chaptersId: _this.chaptersId,
                 chaptersName: _this.chapterName,
+                chaptersType: 0,
                 chaptersContent: _this.chapterContent,
-                charpterMoney: _this.charpterMoney
+                chaptersState: 0,
             },
             dataType: "json",
-            type: "POST",
+            type: "post",
             success: function(data) {
                 if (!data.code) {
                     _this.orginRequest()
@@ -270,7 +319,7 @@
                 _this.chapterName = ''
             },
             error: function() {
-                alert("创建失败");
+                _this.initLoading()
             }
           })
         }else{

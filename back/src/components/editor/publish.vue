@@ -43,6 +43,7 @@
             chaptersPV: 0,
             chapterMoney: 0,
             updateTime: "",
+            chaptersNumber: 10
         }]
 			}
 		},
@@ -50,11 +51,20 @@
 			var _this = this
 			$.get("http://www.3roo.cn/ChaptersListAPIView/",{
           bookId: _this.bookId,
+          pagesNumber: 1
       }, function(data){
           data = $.parseJSON(data);
+          console.log(data)
           _this.bookName = data.name;
           _this.items = data.chaptersList;
       })
+      $.get("http://www.3roo.cn/EditChapterListAPIView/", {
+          bookId: _this.bookId
+      }, function(data) {
+          data = $.parseJSON(data);
+          _this.chaptersNumber = data.chaptersNumber
+      })
+      alert(_this.chaptersNumber)
 		},
 		methods: {
       del: function(chaptersId) {
