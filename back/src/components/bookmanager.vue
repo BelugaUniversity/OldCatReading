@@ -1,9 +1,9 @@
 <template>
 <div>
 	<div class='row'>
-    <ol class='breadcrumb' style="margin-left: 15px;">                
+    <ol class='breadcrumb' style="margin-left: 15px;">
       <li class='active'>书籍管理</li>
-    </ol>                     
+    </ol>
 	</div>
 	<div class='row'>
     <div class='col-sm-8'>
@@ -13,37 +13,37 @@
             <div class='row'>
               <div class='col-sm-2 text-center'>
                 <strong>书籍总数</strong><br><br>
-                <label>{{total}}</label>                                    
+                <label>{{total}}</label>
               </div>
               <div class='col-sm-2'>
                 仙剑 ：<label>{{sword}}</label><br>
-                玄幻 ：<label>{{illusion}}</label><br>                                    
-                悬疑 ：<label>{{suspense}}</label>                                    
+                玄幻 ：<label>{{illusion}}</label><br>
+                悬疑 ：<label>{{suspense}}</label>
               </div>
               <div class='col-sm-2'>
                 奇幻 ：<label>{{strange}}</label><br>
-                军事 ：<label>{{military}}</label><br>                                    
-                历史 ：<label>{{history}}</label>                                     
-              </div>                                                
+                军事 ：<label>{{military}}</label><br>
+                历史 ：<label>{{history}}</label>
+              </div>
               <div class='col-sm-2'>
                 竞技 ：<label>{{sports}}</label><br>
-                科幻 ：<label>{{science}}</label><br>                                    
-                校园 ：<label>{{campus}}</label>                                     
-              </div>      
+                科幻 ：<label>{{science}}</label><br>
+                校园 ：<label>{{campus}}</label>
+              </div>
               <div class='col-sm-2'>
                 社会 ：<label>{{society}}</label><br>
-                其他 ：<label>{{other}}</label>                                 
-              </div>                                           
+                其他 ：<label>{{other}}</label>
+              </div>
             </div>
           </div>
         </div>
-      </div>    
-    </div>                                                       
-	</div>                                 
+      </div>
+    </div>
+	</div>
 
 	<div class='row text-left' style='margin: 0 0 20px 0;'>
-		<button class='btn btn-info'><router-link to='/createBook/'  style="color: #FFF">创建作品</router-link></button>      
-	</div>        
+		<button class='btn btn-info'><router-link to='/createBook/'  style="color: #FFF">创建作品</router-link></button>
+	</div>
 
   <div class="row" style="margin-bottom: 20px;">
     <div class="col-lg-6">
@@ -56,7 +56,7 @@
     </div><!-- /.col-lg-6 -->
   </div><!-- /.row -->
 
-	<div class="btn-group" role="group" aria-label="...">
+	<div class="btn-group" role="group" aria-label="..." style="margin-bottom:20px">
 		<button type="button" class="btn btn-default" v-on:click="filterBook(0)">All</button>
 <!-- 	  <button type="button" class="btn btn-default" v-on:click="filterBook(1)">已上传</button>
 	  <button type="button" class="btn btn-default" v-on:click="filterBook(2)">未上传</button> -->
@@ -65,7 +65,7 @@
 	  <button type="button" class="btn btn-default" v-on:click="filterBook(5)">已审核</button>
 	  <button type="button" class="btn btn-default" v-on:click="filterBook(6)">未审核</button>
 	  <button type="button" class="btn btn-default" v-on:click="filterBook(7)">已屏蔽</button>
-	 
+
 	</div>
 
 
@@ -92,10 +92,10 @@
               <img v-bind:src="'http://www.3roo.cn/static/coverImg/'+item.coverImg" style='width:60px; height: 66px; margin-right: 10px;'> {{item.bookName}}
           </td>
           <td v-if='item.chaptersNumber' style='line-height: 66px;'>第{{item.chaptersNumber}}	章</td>
-          <td style='line-height: 66px;' v-else>未创建章节</td>                                
+          <td style='line-height: 66px;' v-else>未创建章节</td>
           <td>{{item.author}}</td>
           <td>{{item.type}}</td>
-          
+
           <td>{{item.state}}</td>
           <td>{{item.subscribersNumber}}</td>
           <td>{{item.chaptersNumber}}</td>
@@ -156,7 +156,7 @@ export default {
 	    filterState: 0	//当前筛选状态
  	 }
   },
-  created: 
+  created:
   	function(){
   		//页面加载的请求
 			const _this = this
