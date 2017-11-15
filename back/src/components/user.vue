@@ -26,32 +26,32 @@
             <td v-else>用户可用</td>
             <td><el-button type="text" @click="editUser(userInfoItem)">编辑</el-button></td>
           </tr>
-         
+
          </tbody>
       </table>
-	  </div> 
+	  </div>
 
-    
+
 
     <el-dialog title="修改用户信息" :visible.sync="editorUs">
       <div class="row">
           <div class="col-sm-6">
               <label>用户名</label>
-              <input v-model="editUserName" type="text" class="form-control">                                
+              <input v-model="editUserName" type="text" class="form-control">
           </div>
       </div>
       <div class="row" style="margin-top: 15px;">
           <div class="col-sm-6">
               <label>手机号</label>
-              <input v-model="editPhone" type="text" class="form-control">                              
+              <input v-model="editPhone" type="text" class="form-control">
           </div>
       </div>
       <div class="row" style="margin-top: 15px;">
           <div class="col-sm-6">
-              <div class="form-group" style="float: left;">
+              <div class="form-group">
                   <label>是否禁用</label>
                   <input type="checkbox" class="form-control">
-              </div>                                
+              </div>
           </div>
       </div>
       <div slot="footer" class="dialog-footer">
@@ -85,7 +85,7 @@
 	      userInfo: []
 	    }
     },
-    created: 
+    created:
     	function(){
     		//页面加载时请求
     		const _this = this
@@ -145,7 +145,7 @@
               userType: 1
           },
           success: function(data) {
-              
+
               $.ajax({
                 url: "http://www.3roo.cn/ShowUserListAPIView/",
                 async: false,

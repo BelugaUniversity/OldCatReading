@@ -24,16 +24,16 @@
                         <div class="col-sm-3">
                             总打赏量<br>
                             <label class="h2" style="margin-left: 22px;">{{TotalRewardNumber}}</label>
-                        </div>                             
+                        </div>
                        <div class="col-sm-3 text-center" style="text-align: center;">
-                                &nbsp&nbsp&nbsp猫球 :                                             
+                                &nbsp&nbsp&nbsp猫球 :
                                 <label>{{TotalCatBallNumber}} 个</label><br>
                                 猫薄荷 : <label>{{TotalCatnipNumber}} 个</label>
                             </div>
                             <div class="col-sm-3">
                                 逗猫棒 : <label>{{TotalCatStickNumber}} 个</label><br>
                                 &nbsp&nbsp&nbsp猫粮 : <label>{{TotalCatFoodNumber}} 个</label>
-                            </div>                            
+                            </div>
                             <div class="col-sm-3">
                                 &nbsp&nbsp&nbsp鱼 : <label>{{TotalCatFishNumber}} 个</label><br>
                                 猫窝 : <label>{{TotalCatHouseNumber}} 个</label>
@@ -44,11 +44,14 @@
         </div>
     </div>
 
-      <div><div id="myChart" :style="{width: '420px', height: '420px'}"></div></div>
-      <div><div id="myChartReward" :style="{width: '420px', height: '420px'}"></div></div>
+
+			<div>
+				<div id="myChart" :style="{width: '420px', height: '420px'}"></div>
+      	<div id="myChartReward" :style="{width: '420px', height: '420px'}"></div>
+			</div>
       <div>
           <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-              <el-menu-item index="1" @click="indentSelect(1)">日数据</el-menu-item>          
+              <el-menu-item index="1" @click="indentSelect(1)">日数据</el-menu-item>
               <el-menu-item index="2" @click="indentSelect(0)">月数据</el-menu-item>
           </el-menu>
         <el-table
@@ -134,7 +137,7 @@
         <span>页数:{{ numPage }}/{{ pageNumber }}</span>
         <button v-on:click='turnPage(numPage-1)' type='button' class='btn btn-primary' style='margin-left: 10px;'>上一页</button>
         <button v-on:click='turnPage(numPage+1)' type='button' class='btn btn-primary' style='margin-left: 5px;'>下一页</button>
-    </nav>  
+    </nav>
 	</div>
 
 </template>
@@ -227,7 +230,7 @@ export default {
       const _this = this
       if(numPage<=_this.pageNumber&&numPage>0)
       {
-        
+
       }
     },
     indentSelect(val){
