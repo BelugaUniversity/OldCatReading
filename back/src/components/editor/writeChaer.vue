@@ -18,7 +18,7 @@
           </div>                             
         </div>
         <div class="navbar-form navbar-right">
-          <button class="btn btn-default" @click="chapterDelete()" style="margin-left: 30px;" :disabled='delIsDisabled'>删除</button>
+          <!-- <button class="btn btn-default" @click="chapterDelete()" style="margin-left: 30px;" :disabled="delIsDisabled">删除</button> -->
           <button class="btn  btn-default" @click="WordCountAPIView()">字数统计</button>
           <button class="btn  btn-default" @click="newChapter()">新建章节</button>
           <input type="file" id="input" @change="uploadAll($event)">
@@ -134,7 +134,7 @@
     	$.get("http://www.3roo.cn/EditChapterListAPIView/", {
           bookId: _this.bookId
       }, function(data) {
-          data = $.parseJSON(data);
+          //data = $.parseJSON(data);
 
           _this.cities = data.chaptersList
           _this.bookName = data.name;
@@ -150,7 +150,7 @@
         $.get("http://www.3roo.cn/EditChapterListAPIView/", {
             bookId: _this.bookId
         }, function(data) {
-            data = $.parseJSON(data);
+            //data = $.parseJSON(data);
 
             _this.cities = data.chaptersList
             _this.bookName = data.name;
@@ -186,12 +186,6 @@
           this.chapterContent = content
           this.saveChapter()
         }
-/*        for(var i = 0; i < titleArray.length; i++){
-          this.newChapter()
-          this.chapterName = titleArray[i]
-          this.chapterContent = contentArray[i]
-          this.saveChapter()
-        }*/
       },
       chapListSure: function(){
         this.clickprice = false
@@ -211,7 +205,7 @@
               bookId: _this.bookId,
               chapterID: _this.chapterID,
               money: _this.otherChapterMoney
-            },
+            },  
             traditional: true,//这里设置为true
             success: function(data) {
               if(data.state){
@@ -277,7 +271,7 @@
             _this.chapterContent = data.chaptersContent;
             _this.chaptersState = data.chaptersState;
             _this.chaptersType = data.chaptersType;
-            _this.charpterMoney = data.charpterMoney
+            _this.charpterMoney = 0
         });
       },
       newChapter: function (){

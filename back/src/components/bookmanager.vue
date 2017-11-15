@@ -62,8 +62,8 @@
 	  <button type="button" class="btn btn-default" v-on:click="filterBook(2)">未上传</button> -->
 	  <button type="button" class="btn btn-default" v-on:click="filterBook(3)">连载</button>
 	  <button type="button" class="btn btn-default" v-on:click="filterBook(4)">完结</button>
-	  <button type="button" class="btn btn-default" v-on:click="filterBook(5)">已审核</button>
-	  <button type="button" class="btn btn-default" v-on:click="filterBook(6)">未审核</button>
+	  <button type="button" class="btn btn-default" v-on:click="filterBook(6)">已审核</button>
+	  <button type="button" class="btn btn-default" v-on:click="filterBook(5)">未审核</button>
 	  <button type="button" class="btn btn-default" v-on:click="filterBook(7)">已屏蔽</button>
 	 
 	</div>
@@ -176,10 +176,9 @@ export default {
 	      }
       })
       $.ajax({
-				url: 'http://www.3roo.cn/BookNumberStatisticsAPIView/',
+				url: 'http://www.3roo.cn/BookNumberAPIView/',
 				async: false,
 				data: {
-					numPage: 1
 				},
 				dataType: 'json',
 				type: 'GET',

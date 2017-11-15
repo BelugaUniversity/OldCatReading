@@ -28,6 +28,13 @@
         </tbody>
       </table>
     </div>
+    <div class="block">
+      <el-pagination
+        layout="prev, pager, next"
+        :total="chaptersNumber"
+        @current-change="handleCurrentChange">
+      </el-pagination>
+    </div>
 	</div>
 </template>
 <script>
@@ -36,6 +43,7 @@
 			return{
 				bookName: "",
         bookId: this.$route.params.bookId,
+        numPage: 1,
         items: [{
             chaptersId: "",
             chaptersName: "",
@@ -57,14 +65,8 @@
           console.log(data)
           _this.bookName = data.name;
           _this.items = data.chaptersList;
-      })
-      $.get("http://www.3roo.cn/EditChapterListAPIView/", {
-          bookId: _this.bookId
-      }, function(data) {
-          data = $.parseJSON(data);
           _this.chaptersNumber = data.chaptersNumber
       })
-      alert(_this.chaptersNumber)
 		},
 		methods: {
       del: function(chaptersId) {
@@ -85,7 +87,7 @@
                   
                     $.get("http://www.3roo.cn/ChaptersListAPIView/",{
                         bookId: _this.bookId,
-                        pagesNumber: 1
+                        pagesNumber: _this.numPage
                     }, function(data){
                         data = $.parseJSON(data);
                         _this.bookName = data.name;
@@ -96,6 +98,20 @@
           error: function() {
               alert("错误");
           }
+        })
+      },
+      handleCurrentChange: function(val){
+        var _this = this
+        this.numPage = val
+        $.get("http://www.3roo.cn/ChaptersListAPIView/",{
+            bookId: _this.bookId,
+            pagesNumber: val
+        }, function(data){
+            data = $.parseJSON(data);
+            console.log(data)
+            _this.bookName = data.name;
+            _this.items = data.chaptersList;
+            _this.chaptersNumber = data.chaptersNumber
         })
       }
     }
