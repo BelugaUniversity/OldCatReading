@@ -21,7 +21,9 @@
           <!-- <button class="btn btn-default" @click="chapterDelete()" style="margin-left: 30px;" :disabled="delIsDisabled">删除</button> -->
           <button class="btn  btn-default" @click="WordCountAPIView()">字数统计</button>
           <button class="btn  btn-default" @click="newChapter()">新建章节</button>
-          <input type="file" id="input" @change="uploadAll($event)">
+          <button class="btn  btn-default" style="width: 82px;height: 34px; position: relative;" v-loading.fullscreen.lock="loading"
+          element-loading-text="猫猫正在为您上传..(^_^)">批量上传<input type="file" id="input" @change="uploadAll($event)" style="opacity: 0;width: 82px;height: 34px; position: absolute; left:0; top: 0;"></button>
+          
           <button class="btn btn-default" @click="saveChapter()">保存</button>
           <!-- <button class="btn btn-success" @click="releaseChapter()">发布</button> -->
         </div>                       
@@ -29,9 +31,7 @@
 	  </div>
     <div style="margin-left: 15px;">
   	  <div class="row"  style="border-right:  solid 1px #E6E6E6; border-left:  solid 1px #E6E6E6; border-bottom:  solid 1px #E6E6E6; height: 650px;">
-  		  <div class="col-sm-2 table-responsive" style="border-right:  solid 1px #E6E6E6; padding-left: 0px; padding-right: 0px; height: 
-
-        100%;">
+  		  <div class="col-sm-2 table-responsive" style="border-right:  solid 1px #E6E6E6; padding-left: 0px; padding-right: 0px; height: 570px;">
   		      <div v-if="newChapterState"  style="border-bottom: solid 1px #E6E6E6; background-color: #E1F2FF; height: 65px; text-align: center;">
   		          <span style="line-height: 65px;">无标题</span>
   		      </div>
@@ -42,7 +42,7 @@
   		  </div>
   		  <div class="col-sm-10">
   		      <div class="row" style="padding-left: 6px; padding-right: 6px;">
-  		        <input v-model="chapterName" placeholder="此处输入章节名" class="form-control" type="text" name="title" style="margin-top: 10px; margin-bottom: 8px; border: 0px;">
+  		        <input v-model="chapterName" placeholder="此处输入章节名" class="form-control" type="text" name="title" style="margin: 10px 0; margin-bottom: 8px; border: 0px;">
   		        <textarea v-model="chapterContent" style="border: 0px;  height: 570px;" placeholder="请输入章节内容"  class="form-control"></textarea>
   		      </div>
   		  </div>                 
@@ -81,6 +81,7 @@
 	export default{
 		data() {
 			return{
+        loading: false,
         chapterID: [],                //发送的id列表
 				newChapterState: 1,          // 新建章节显示状态
 			  chaptersNumber: "",          // 章节总数
@@ -164,6 +165,8 @@
         var _this = this
         var file = e.target.files[0]
         var reader = new FileReader();
+        this.loading = true
+        console.log(this.loading)
         reader.readAsText(file, "gb2312"); 
         reader.onload = function(file){
           _this.handleTxt(file.target.result)
@@ -173,8 +176,6 @@
         //处理txt内容
         var re = new RegExp("第\S章")
         var infoArray = info.split(/第\S*章+/)
-        var titleArray = []
-        var contentArray = []
         var title
         var content
         for(var i = 1; i < infoArray.length; i++)
@@ -185,6 +186,9 @@
           this.chapterName = title
           this.chapterContent = content
           this.saveChapter()
+          if(i == infoArray.length - 1){
+            this.loading = false 
+          }
         }
       },
       chapListSure: function(){
